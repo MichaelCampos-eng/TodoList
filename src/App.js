@@ -5,6 +5,8 @@ import './CustomButton.css'
 import './Mars.css'
 import './General.css'
 import './BottomContent.css'
+import './Space.css'
+
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
@@ -46,6 +48,13 @@ function App() {
     <>
       
       <body>
+      
+        <div class='star'></div>
+        <div class='star'></div>
+        <div class='star'></div>
+        
+        
+
         <div class = "container">
 
           <div class="content">
@@ -59,18 +68,21 @@ function App() {
               </div>
               <div> {todos.filter(todo => !todo.complete).length} MAR to do!</div>
             </div>
-
           </div>
 
-          <div class="space">
+          <div class="env">
             <div class="planet">
               <div class="mars">
                 <div class="img-map"></div>
               </div>
             </div>
           </div>
+          
 
         </div>
+
+      
+        
 
       </body>
 
