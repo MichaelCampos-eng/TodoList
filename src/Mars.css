@@ -1,0 +1,105 @@
+.space {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.planet {
+  transform: rotate3d(0, 0, 1, -25deg) scale3d(.23, .23, 1);
+  transition: transform 1s ease;
+  border-radius: 100%;
+  width: 1500px;
+  height: 1500px;
+  position: relative;
+
+  &:after {
+    content: '';
+    width: 1500px;
+    height: 1500px;
+    position: absolute;
+    border-radius: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: inset 25px 40px 100px 0px rgba(255, 255, 255, .45),
+      -50px -50px 150px 0px rgba(225, 69, 38, 0.35),
+      -25px -55px 150px 0px rgba(226, 108, 66, 0.2),
+      0 0 150px 100px rgba(58, 2, 0, .4);
+  }
+  &:before {
+    content: '';
+    width: 1500px;
+    height: 1500px;
+    position: absolute;
+    border-radius: 100%;
+    background: #E26C42;
+    mix-blend-mode: overlay;
+    opacity: .35;
+    z-index: 100;
+  }
+}
+
+.space:active .planet {
+  transform: rotate3d(0, 0, 1, -25deg) scale3d(.5, .5, 1);
+  transition: transform 1s ease;
+}
+
+.space:active .img-map {
+  animation-play-state: paused;
+}
+
+.mars {
+  clip-path: circle(50%);
+  width: 1500px;
+  height: 1500px;
+  perspective: 1500px;
+  position: relative;
+  overflow: hidden;
+  clip-path: content-box;
+  background-image: radial-gradient(
+      circle farthest-side at 0% 0%,
+      rgba(255, 255, 255, .25) 0%,
+      rgba(0, 0, 0, .35) 100%
+    ),
+    radial-gradient(
+      circle farthest-side at 0% 0%,
+      rgba(255, 189, 157, 1) 25%,
+      transparent 80%
+    ),
+    radial-gradient(
+      circle farthest-side at 0% 0%,
+      rgba(218, 32, 13, 1) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle farthest-side at 50% 0%,
+      rgba(240, 87, 72, 1) 0%,
+      rgba(39, 3, 0, 1) 85%
+    );
+}
+
+.mars .img-map {
+  width: 6000px;
+  height: 1500px;
+  position: absolute;
+  mix-blend-mode: soft-light;
+  opacity: .4;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/mars-bg-min.jpg')
+    0%
+    0% /
+    auto
+    100%
+    repeat-x;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

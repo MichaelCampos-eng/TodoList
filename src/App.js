@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect} from 'react'
 import Todolist from './Todolist'
 import { v4 as uuidv4} from 'uuid'
+import './CustomButton.css'
+import './Mars.css'
+import './General.css'
+import './BottomContent.css'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
@@ -37,15 +41,39 @@ function App() {
     const newTodos = todos.filter(todo => !todo.complete)
     setTodos(newTodos)
   }
-
-
+  
   return (
     <>
-      <Todolist todos={todos} toggleTodo={toggleTodo}/>
-      <input ref={todoNameRef} type='text' />
-      <button onClick={handleAddTodo}> Add Todo </button>
-      <button onClick={handleClearTodos}> Clear Completed Todos</button>
-      <div> {todos.filter(todo => !todo.complete).length} left to fucking do mofo!</div>
+      
+      <body>
+        <div class = "container">
+
+          <div class="content">
+            <Todolist todos={todos} toggleTodo={toggleTodo}/>
+
+            <div class="bottom">
+              <input ref={todoNameRef} type='text' />
+              <div className="button-container">
+                <button className="custom-button red" onClick={handleAddTodo}> Add Todo </button>
+                <button className="custom-button red" onClick={handleClearTodos}> Clear Completed Todos </button>
+              </div>
+              <div> {todos.filter(todo => !todo.complete).length} MAR to do!</div>
+            </div>
+
+          </div>
+
+          <div class="space">
+            <div class="planet">
+              <div class="mars">
+                <div class="img-map"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </body>
+
     </>
   )
 }

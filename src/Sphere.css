@@ -1,0 +1,20 @@
+.sphere {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 10s linear infinite;
+  }
+  
+  .texture {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/mars-bg-min.jpg');
+    background-size: cover;
+    position: absolute;
+    transform: translateZ(-150px);
+    clip-path: circle(50%);
+  }
+  
