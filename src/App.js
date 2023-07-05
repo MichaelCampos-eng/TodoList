@@ -61,7 +61,7 @@ function App() {
             <Todolist todos={todos} toggleTodo={toggleTodo}/>
 
             <div class="bottom">
-              <input ref={todoNameRef} type='text' />
+              <input class="custom-input" ref={todoNameRef} type='text' />
               <div className="button-container">
                 <button className="custom-button red" onClick={handleAddTodo}> Add Todo </button>
                 <button className="custom-button red" onClick={handleClearTodos}> Clear Completed Todos </button>
@@ -74,6 +74,7 @@ function App() {
             <div class="planet">
               <div class="mars">
                 <div class="img-map"></div>
+                <div class="mask"></div>
               </div>
             </div>
           </div>

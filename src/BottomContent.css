@@ -4,3 +4,35 @@
     flex-direction: column;
     gap: 5px;
   }
+
+  .custom-input {
+    border-radius: 1px;
+    background-color: #151515;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+  }
+
+  input[type="text"] {
+    color: white;
+  }
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transform: scale(1);
+    width: 16px;
+    height: 16px;
+    border: 1px solid #000;
+    border-radius: 1px;
+    background-color: #151515;
+    color: white;
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: rebeccapurple;
+  }
+  

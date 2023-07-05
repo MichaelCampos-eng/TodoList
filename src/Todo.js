@@ -9,10 +9,11 @@ export default function Todo({ todo, toggleTodo}) {
     return (
         <div>
             <label>
+                <span class="checkmark"></span>
                 <input type="checkbox" checked={todo.complete} onChange = {handleTodoClick}/>
                 { todo.name }
+
             </label>
-            
         </div>
     )
 }
