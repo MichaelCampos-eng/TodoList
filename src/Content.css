@@ -58,77 +58,82 @@
     background-color: rebeccapurple;
   }
 
-
-
-#statusFull {
-  position: absolute;
-  font-weight: bold;
-  color: rebeccapurple;
-  opacity: 0%;
+.status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#statusCount {
-  position: absolute;
-  opacity: 100%;
-}
+  #statusFull {
+    position: absolute;
+    font-weight: bold;
+    color: rebeccapurple;
+    opacity: 0%;
+  }
 
-.transition-statusCount {
-  animation-name: log-in-2, fade-in, slide-down-2;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-}
+  #statusCount {
+    position: relative;
+    opacity: 100%;
+  }
+
+  .transition-statusCount {
+    animation-name: log-in-2, fade-in, slide-down-2;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+  }
 
 
-.transition-statusFull {
-  animation-name: horizontal-shaking, log-in-1, fade-out, slide-down-1;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-}
+  .transition-statusFull {
+    animation-name: horizontal-shaking, log-in-1, fade-out, slide-down-1;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+  }
 
-@keyframes slide-down-2 {
-  75% { transform: translateY(0px) }
-  100% { transform: translateY(2px) }
-}
+  @keyframes slide-down-2 {
+    75% { transform: translateY(0px) }
+    100% { transform: translateY(2px) }
+  }
 
-@keyframes slide-down-1 {
-  75% { transform: translateY(1px) }
-  87.5% { transform: translateY(2px) } 
-  100% { transform: translateY(10px) }
-}
+  @keyframes slide-down-1 {
+    75% { transform: translateY(1px) }
+    87.5% { transform: translateY(2px) } 
+    100% { transform: translateY(10px) }
+  }
 
-@keyframes fade-out {
-  75% {opacity: 75%}
-  100% {opacity: 0%}
-}
+  @keyframes fade-out {
+    75% {opacity: 75%}
+    100% {opacity: 0%}
+  }
 
-@keyframes fade-in {
-  75% {opacity: 0%}
-  100% {opacity: 75%}
-}
+  @keyframes fade-in {
+    75% {opacity: 0%}
+    100% {opacity: 75%}
+  }
 
-@keyframes log-in-1 {
-  0% { opacity: 100%}
-  75% {opacity: 100%}
-}
+  @keyframes log-in-1 {
+    0% { opacity: 100%}
+    75% {opacity: 100%}
+  }
 
-@keyframes log-in-2 {
-  0% { opacity: 0%}
-  0% { bottom: 1px}
-  75% {opacity: 0%}
-  75% {bottom : 1px}
-}
+  @keyframes log-in-2 {
+    0% { opacity: 0%}
+    0% { bottom: 1px}
+    75% {opacity: 0%}
+    75% {bottom : 1px}
+  }
 
-@keyframes horizontal-shaking {
-  0% { transform: translateX(0) }
-  6.25% {transform: translateX(-2px)}
-  12.5% { transform: translateX(2px) }
-  18.75% { transform: translateX(-2px) }
-  25% { transform: translateX(2px) }
-  31.25% { transform: translateX(-2px) }
-  37.5% { transform: translateX(2px) }
-  43.75% { transform: translateX(-2px) }
-  50% { transform: translateX(2px) }
-  56.25% { transform: translateX(-2px) }
-  62.5% { transform: translateX(2px) }
-  75% { transform: translateX(0px) }
- }
+  @keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    6.25% {transform: translateX(-2px)}
+    12.5% { transform: translateX(2px) }
+    18.75% { transform: translateX(-2px) }
+    25% { transform: translateX(2px) }
+    31.25% { transform: translateX(-2px) }
+    37.5% { transform: translateX(2px) }
+    43.75% { transform: translateX(-2px) }
+    50% { transform: translateX(2px) }
+    56.25% { transform: translateX(-2px) }
+    62.5% { transform: translateX(2px) }
+    75% { transform: translateX(0px) }
+  }

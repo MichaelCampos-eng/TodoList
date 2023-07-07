@@ -66,8 +66,6 @@ function App() {
   
   return (
     <>
-      
-      <body>
         <div class='star'></div>
         <div class='star'></div>
         <div class='star'></div>
@@ -105,19 +103,13 @@ function App() {
             <div class="planet">
               <div class="mars">
                 <div class="img-map"></div>
-                <div class="mask"></div>
               </div>
             </div>
           </div>
-          
-
         </div>
 
-      
-        
-
-      </body>
-
+        <div className='logo'> MarsTodo </div>
+        <div className='name'> Developed by Michael Campos </div>
     </>
   )
 }
