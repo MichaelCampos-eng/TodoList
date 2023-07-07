@@ -1,0 +1,24 @@
+
+input[type="number"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transform: scale(1);
+    width: 45px;
+    height: 16px;
+    border: 1px solid #000;
+    border-radius: 1px;
+    background-color: #151515;
+    color: white;
+  }
+  
+
+
+
+.time {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}

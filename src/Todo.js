@@ -1,4 +1,6 @@
 import React from 'react'
+import CustomTimer from './CustomTimer'
+import {IoTimerOutline} from 'react-icons/io5';
 
 export default function Todo({ todo, toggleTodo }) {
     function handleTodoClick() {
@@ -20,6 +22,16 @@ export default function Todo({ todo, toggleTodo }) {
           <div className="text">
             {todo.name}
           </div>
+
+          <div className="customTimer">
+            <div className='icon'>
+              <IoTimerOutline/>
+            </div>
+            <div className='subwindow'>
+              <CustomTimer/>
+            </div>
+          </div>
+
         </label>
       </div>
     );
