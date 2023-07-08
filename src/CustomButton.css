@@ -28,7 +28,7 @@
     .custom-button:active:after {
     padding: 0;
     margin: 0;
-    opacity: 1;
+    opacity: 0.75;
     transition: 0s
     }
     /* Button Effects */

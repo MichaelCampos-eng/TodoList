@@ -6,6 +6,7 @@ import './Mars.css'
 import './General.css'
 import './Content.css'
 import './CustomTimer.css'
+import './Space.css'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 

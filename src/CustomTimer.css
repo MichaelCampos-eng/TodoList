@@ -1,4 +1,9 @@
 
+.customTimer {
+  display: flex;
+  align-items: center;
+}
+
 input[type="number"] {
     appearance: none;
     -webkit-appearance: none;
@@ -12,8 +17,23 @@ input[type="number"] {
     color: white;
   }
   
+  .subwindow {
+    opacity: 0%;
+    position: relative;
+    z-index: 1;
+  }
 
-
+  .icon {
+    background: 'transparent';
+    outline: 'none';
+    position: absolute;
+    font-size: 17px;
+    color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
 
 .time {
     width: 50%;
@@ -21,4 +41,39 @@ input[type="number"] {
     position: relative;
     display: flex;
     flex-direction: row;
+}
+
+.icontowindow-icon {
+  animation-name: fade-out;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+.icontowindow-window {
+  animation-name: fade-in;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+.windowtoicon-icon {
+  animation-name: fade-in;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+.windowtoicon-window {
+  animation-name: fade-out;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+
+@keyframes fade-in {
+  50% {opacity: 0%;}
+  100% {opacity: 100%;}
+}
+
+@keyframes fade-out {
+  0% {opacity: 100%;}
+  100% {opacity: 0%;}
 }

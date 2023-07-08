@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function CustomTimer() {
+export default function CustomTimer({ handleTimer }) {
   
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -58,6 +58,11 @@ export default function CustomTimer() {
     setIsTimerRunning(false);
   };
 
+  function handleStart() {
+    startTimer();
+    handleTimer();
+  }
+
 
   return (
     <>
@@ -68,7 +73,7 @@ export default function CustomTimer() {
       </div>
 
       <div className='buttons'>
-        <button className="custom-button" onClick={startTimer}>Start </button>
+        <button className="custom-button" onClick={handleStart}>Start </button>
         <button className="custom-button" onClick={stopTimer}>Stop </button>
       </div>
       
