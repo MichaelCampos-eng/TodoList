@@ -1,3 +1,8 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+  transform: scale3d(0.82, 0.8, 1);
+}
 
 .customTimer {
   display: flex;
@@ -21,11 +26,13 @@ input[type="number"] {
     opacity: 0%;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
+ 
   .icon {
-    background: 'transparent';
-    outline: 'none';
+    margin-left: 63%;
     position: absolute;
     font-size: 17px;
     color: green;
@@ -33,11 +40,19 @@ input[type="number"] {
     justify-content: center;
     align-items: center;
     z-index: 2;
+    background-color:rgba(186, 17, 12, 0);
+    border: none;
+    
   }
 
+  .icon:hover {
+    transition: 0.1s ease-in;
+    cursor: pointer;
+    color: white
+  }
+  
+
 .time {
-    width: 50%;
-    height: 50%;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -46,25 +61,25 @@ input[type="number"] {
 .icontowindow-icon {
   animation-name: fade-out;
   animation-duration: 0.25s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in;
 }
 
 .icontowindow-window {
   animation-name: fade-in;
   animation-duration: 0.25s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in;
 }
 
 .windowtoicon-icon {
   animation-name: fade-in;
   animation-duration: 0.25s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in;
 }
 
 .windowtoicon-window {
   animation-name: fade-out;
   animation-duration: 0.25s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in;
 }
 
 

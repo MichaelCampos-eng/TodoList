@@ -52,6 +52,7 @@
     border-radius: 1px;
     background-color: #151515;
     color: white;
+    cursor: pointer;
   }
   
   input[type="checkbox"]:checked {

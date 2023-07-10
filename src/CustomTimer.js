@@ -1,83 +1,109 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {IoTimerOutline} from 'react-icons/io5';
 
-export default function CustomTimer({ handleTimer }) {
-  
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-  const [timerValue, setTimerValue] = useState('');
-
+export default function CustomTimer({handleToWindow, handleToIcon, todo}) {
+  const [hours, setHours] = useState('');
+  const [minutes, setMinutes] = useState('');
+  const [seconds, setSeconds] = useState('');
+  const [iconColor, setIconColor] = useState('white')
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  let timerIntervalRef = useRef();
+  const initialTotalSecondsRef = useRef(0);
+  const timerIntervalRef = useRef(null);
+  const stopClickStop = useRef(false);
 
   useEffect(() => {
-    // Update the timer value whenever hours, minutes, or seconds change
-    setTimerValue(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+    // Clear the interval when the component unmounts
+    return () => {
+      clearInterval(timerIntervalRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Update the icon color based on the timer value
+    const parts = [initialTotalSecondsRef.current/4, initialTotalSecondsRef.current/2, 3 * initialTotalSecondsRef.current/4];
+    const totalSeconds = convertToSeconds(hours, minutes, seconds);
+    if (totalSeconds == 0) {
+      setIconColor('red');
+    }
+    else if (totalSeconds <= parts[0]) {
+      setIconColor('orange');
+    } else if (totalSeconds <= parts[1]) {
+      setIconColor('yellow');
+    } else if (totalSeconds <= parts[2]) {
+      setIconColor('#90EE90');
+    } else {
+      setIconColor('green');
+    }
   }, [hours, minutes, seconds]);
 
-  const startTimer = () => {
-    
-    if (!isTimerRunning){
-      setIsTimerRunning(true)
-
-    // Calculate the total time in seconds
-    const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-
-    // Start the timer using 
-    
+  function startTimer(givenTime) {
+    const start = new Date();
+    setIsTimerRunning(true);
+    initialTotalSecondsRef.current = givenTime;
 
     timerIntervalRef.current = setInterval(() => {
-      // Decrease the timer value by 1 second
-      setTimerValue(prevValue => {
-        const [h, m, s] = prevValue.split(':').map(Number);
-        const total = h * 3600 + m * 60 + s;
+      const currentSeconds = calculateTotalSeconds(start);
+      const remainingSeconds = givenTime - currentSeconds;
 
-        if (total > 0) {
-          const newTotal = total - 1;
-          const newHours = Math.floor(newTotal / 3600);
-          const newMinutes = Math.floor((newTotal % 3600) / 60);
-          const newSeconds = newTotal % 60;
+      if (remainingSeconds >= 0) {
+        const newHours = Math.floor(remainingSeconds / 3600);
+        const newMinutes = Math.floor((remainingSeconds % 3600) / 60);
+        const newSeconds = remainingSeconds % 60;
 
-          setHours(newHours);
-          setMinutes(newMinutes);
-          setSeconds(newSeconds);
-
-          return `${newHours.toString().padStart(2, '0')}:${newMinutes.toString().padStart(2, '0')}:${newSeconds.toString().padStart(2, '0')}`;
-        }
-
+        setHours(`${newHours}`);
+        setMinutes(`${newMinutes}`);
+        setSeconds(`${newSeconds}`);
+      } else {
+        setIsTimerRunning(false);
         clearInterval(timerIntervalRef.current);
-        setIsTimerRunning(false)
-        return prevValue;
-      });
+      }
     }, 1000);
   }
-  };
 
-  const stopTimer = () => {
-    clearInterval(timerIntervalRef.current);
+  function stopTimer() {
     setIsTimerRunning(false);
-  };
-
-  function handleStart() {
-    startTimer();
-    handleTimer();
+    clearInterval(timerIntervalRef.current);
+    stopClickStop.current = true;
   }
 
+  function handleStart() {
+    if (!isTimerRunning) {
+      stopClickStop.current = false;
+      startTimer(convertToSeconds(hours, minutes, seconds));
+    }
+  }
+
+  function convertToSeconds(hours, minutes, seconds) {
+    return 60 * 60 * parseInt(hours.toString().padStart(2, '0')) +
+    60 * parseInt(minutes.toString().padStart(2, '0')) +
+    parseInt(seconds.toString().padStart(2, '0'));
+  }
+
+  function calculateTotalSeconds(current) {
+    const currentTime = new Date();
+    const elapsedTime = (currentTime - current) / 1000;
+    return Math.round(elapsedTime);
+  }
 
   return (
     <>
-      <div className='time'>
-        <input type="number" placeholder='HH' value={hours} onChange={e => setHours(parseInt(e.target.value))} />
-        <input type="number" placeholder='MM' value={minutes} onChange={e => setMinutes(parseInt(e.target.value))} />
-        <input type="number" placeholder='SS' value={seconds} onChange={e => setSeconds(parseInt(e.target.value))} />
-      </div>
+      <button className='icon' id={"icon-" + todo.id} onClick={handleToWindow} style={{ color: iconColor }}>
+        <IoTimerOutline/>
+      </button>
+    
+      <div className='subwindow' id={"subWindow-" + todo.id}>
+        <div className='time'>
+          <input type='number' placeholder='HH' value={hours} onChange={e => setHours(e.target.value)} min="0"/>
+          <input type='number' placeholder='MM' value={minutes} onChange={e => setMinutes(e.target.value)} min="0"/>
+          <input type='number' placeholder='SS' value={seconds} onChange={e => setSeconds(e.target.value)} min="0"/>
+        </div>
 
-      <div className='buttons'>
-        <button className="custom-button" onClick={handleStart}>Start </button>
-        <button className="custom-button" onClick={stopTimer}>Stop </button>
+        <div className='buttons'>
+          <button className='custom-button' id='start' onClick={handleStart}> {stopClickStop.current ? 'Resume' : 'Start'} </button>
+          <button className='custom-button' id='stop' onClick={stopTimer}> Stop </button>
+          <button className="custom-button" id='exit' onClick={handleToIcon}>X</button>
+        </div>
       </div>
-      
     </>
   );
 }
-  
